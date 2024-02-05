@@ -5,4 +5,4 @@ editing, and visualizing GLSL shaders in real time. This tool
 facilitates an intuitive development process for graphics
 programming, offering instant feedback on shader code changes
 
-[ShaderEd](./screenshot.png)
+![ShaderEd](./screenshot.png)
