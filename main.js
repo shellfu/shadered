@@ -39,13 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
             window.fragmentShaderCode = await fshResponse.text();
 
             // Shader material setup
-            window.material = new THREE.ShaderMaterial({
+            window.material = new THREE.RawShaderMaterial({
                 uniforms: {
                     resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
                     time: { value: 0.0 },
                 },
                 vertexShader: window.vertexShaderCode,
-                fragmentShader: window.fragmentShaderCode
+                fragmentShader: window.fragmentShaderCode,
+                glslVersion: THREE.GLSL3,
             });
 
             const sceneSetup = new SceneSetup();
