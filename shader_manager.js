@@ -4,8 +4,11 @@ export class ShaderManager {
         material = new THREE.RawShaderMaterial({
             vertexShader: vertexShaderCode,
             fragmentShader: fragmentShaderCode,
-            uniforms: {},
             glslVersion: THREE.GLSL3,
+            uniforms: {
+                uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                uTime: { value: 0.0 },
+            },
         });
         this.isVertexShader = true;
         this.customUniforms = {};

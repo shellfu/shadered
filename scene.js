@@ -16,6 +16,10 @@ export class SceneSetup {
         this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
 
         material = new THREE.RawShaderMaterial({
+            uniforms: {
+                uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                uTime: { value: 0.0 },
+            },
             vertexShader: vertexShaderCode,
             fragmentShader: fragmentShaderCode,
             glslVersion: THREE.GLSL3,
@@ -41,6 +45,7 @@ export class SceneSetup {
 
     animate() {
         requestAnimationFrame(this.animate.bind(this));
+        this.material.uniforms.uTime.value += 0.05
         this.controls.update();
         this.renderer.render(this.scene, this.camera);
     }

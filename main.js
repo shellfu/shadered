@@ -5,6 +5,22 @@ import { ShaderEditor } from './shader_editor.js';
 import { UIController } from './ui_controller.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+      // Display the modal on page load
+      const modal = document.getElementById('helpModal');
+      modal.style.display = 'block';
+
+      // When the user clicks on <span> (x), close the modal
+      document.querySelector('.close-button').onclick = function() {
+        modal.style.display = 'none';
+      }
+
+      // Also close the modal if the user clicks anywhere outside of the modal content
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      }
+
     const originalConsoleError = console.error;
     console.error = function (message, ...optionalParams) {
         if (message.includes('THREE.WebGLProgram: shader error')) {
@@ -41,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Shader material setup
             window.material = new THREE.RawShaderMaterial({
                 uniforms: {
-                    resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-                    time: { value: 0.0 },
+                    uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                    uTime: { value: 0.0 },
                 },
                 vertexShader: window.vertexShaderCode,
                 fragmentShader: window.fragmentShaderCode,

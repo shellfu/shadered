@@ -8,6 +8,10 @@ in vec2 fragTexCoord; // Texture coordinates of the fragment
 // Example output
 out vec4 outColor; // Output color of the fragment
 
+// Uniforms
+uniform float uTime;
+uniform vec2 uResolution;
+
 void main() {
     // Simple example: modulate the output color with the normal vector to visualize it
     outColor = vec4(normalize(fragNormal) * 0.5 + 0.5, 1.0);
