@@ -69,7 +69,10 @@
         </div>
 
         <div id="uniformsPanel">
-            <p id="uniformHelp">Use the controls below to add custom uniforms to your shader. You can also update the value of an existing uniform by adding a new uniform with the same name.</p>
+            <p id="uniformHelp">
+            Use the controls below to add custom uniforms to your shader. You can also update the value of an existing uniform by adding a new uniform with the same name.
+            </br>In addition, the following uniforms the editor sets for you: </br><b>`uTime`, `uResolution`,</b> and <b>`uCameraPosition`</b>.
+            </p>
             <div id="controls">
                 <input type="text" id="uniformName" placeholder="Uniform Name">
                 <select id="uniformType">
@@ -122,6 +125,7 @@
         <!-- External Libraries -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/stats.js/build/stats.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/three@0.141.0/build/three.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/three@0.141.0/examples/js/controls/OrbitControls.js"></script>
 

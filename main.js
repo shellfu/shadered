@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const originalConsoleError = console.error;
     console.error = function (message, ...optionalParams) {
-        if (message.includes('THREE.WebGLProgram: shader error')) {
+        if (message.includes('THREE.WebGLProgram: Shader Error')) {
             let formattedMessage = `<strong>Error:</strong> ${message}<br>`;
             optionalParams.forEach(param => {
                 formattedMessage += `<code>${param}</code><br>`;
@@ -54,17 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.vertexShaderCode = await vshResponse.text();
             window.fragmentShaderCode = await fshResponse.text();
 
-            // Shader material setup
-            window.material = new THREE.RawShaderMaterial({
-                uniforms: {
-                    uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-                    uTime: { value: 0.0 },
-                },
-                vertexShader: window.vertexShaderCode,
-                fragmentShader: window.fragmentShaderCode,
-                glslVersion: THREE.GLSL3,
-            });
-
             const sceneSetup = new SceneSetup();
             const shaderManager = new ShaderManager(sceneSetup.scene, window.material);
             const editor = new ShaderEditor('editor', shaderManager);
@@ -81,5 +70,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupApplication().catch(error => {
         console.error('An error occurred:', error);
     });
-});
 
+});

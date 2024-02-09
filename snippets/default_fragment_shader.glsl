@@ -11,6 +11,7 @@ out vec4 outColor; // Output color of the fragment
 // Uniforms
 uniform float uTime;
 uniform vec2 uResolution;
+uniform vec3 uCameraPosition;
 
 void main() {
     // Simple example: modulate the output color with the normal vector to visualize it
