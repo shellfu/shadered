@@ -8,6 +8,7 @@ export class ShaderManager {
             uniforms: {
                 uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
                 uTime: { value: 0.0 },
+                uMouseCoord: { value: new THREE.Vector4(0.0, 0.0, 0.0, 0.0) },
             },
         });
         this.isVertexShader = true;

@@ -28,6 +28,7 @@ export class SceneSetup {
                 uResolution: { value: new THREE.Vector2(this.renderCanvas.clientWidth, this.renderCanvas.clientHeight) },
                 uCameraPosition: { value: this.camera.position.clone() },
                 uTime: { value: 0.0 },
+                uMouseCoord: { value: new THREE.Vector4(0.0, 0.0, 0.0, 0.0) },
             },
             vertexShader: vertexShaderCode,
             fragmentShader: fragmentShaderCode,
@@ -49,6 +50,7 @@ export class SceneSetup {
         this.animate();
         document.getElementById('shapeType').addEventListener('change', (event) => this.switchGeometry(event.target.value));
         window.addEventListener('resize', () => this.onWindowResize());
+        document.addEventListener('mousemove', (e) => this.updateMouseUniform(e));
     }
 
     setupInitialGeometry() {
@@ -72,6 +74,24 @@ export class SceneSetup {
         this.renderer.render(this.scene, this.camera);
 
         this.stats.update();
+    }
+
+    // Function to convert screen coordinates to NDC
+    updateMouseUniform(e) {
+        // Get mouse position in screen coordinates
+        let mouseX = e.clientX;
+        let mouseY = e.clientY;
+
+        // Convert to normalized device coordinates (NDC)
+        let xNDC = (mouseX / window.innerWidth) * 2 - 1;
+        let yNDC = -(mouseY / window.innerHeight) * 2 + 1;
+
+        // Update the uMouseCoord uniform
+        // Assuming Z and W components are not used in this context, set to 0.0
+        window.material.uniforms.uMouseCoord.value.x = xNDC;
+        window.material.uniforms.uMouseCoord.value.y = yNDC;
+        window.material.uniforms.uMouseCoord.value.z = 0.0; // Optional, based on usage
+        window.material.uniforms.uMouseCoord.value.w = 0.0; // Optional, based on usage
     }
 
     onWindowResize() {
