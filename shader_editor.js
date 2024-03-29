@@ -48,6 +48,14 @@ export class ShaderEditor {
         this.editor.setValue(value, -1);
     }
 
+    getVertexShaderContent() {
+        return this.vertexShaderCode;
+    }
+
+    getFragmentShaderContent() {
+        return this.fragmentShaderCode;
+    }
+
     downloadShaderCode() {
         const shaderCode = this.getValue(); // Method to get the current shader code from the editor
         const shaderType = this.currentShaderType; // 'vertex' or 'fragment'
