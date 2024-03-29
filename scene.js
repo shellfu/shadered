@@ -78,20 +78,17 @@ export class SceneSetup {
 
     // Function to convert screen coordinates to NDC
     updateMouseUniform(e) {
-        // Get mouse position in screen coordinates
         let mouseX = e.clientX;
         let mouseY = e.clientY;
 
         // Convert to normalized device coordinates (NDC)
-        let xNDC = (mouseX / window.innerWidth) * 2 - 1;
-        let yNDC = -(mouseY / window.innerHeight) * 2 + 1;
+        let xNDC = (mouseX / this.renderCanvas.clientWidth) * 2 - 1;
+        let yNDC = -(mouseY / this.renderCanvas.clientHeight) * 2 + 1;
 
-        // Update the uMouseCoord uniform
-        // Assuming Z and W components are not used in this context, set to 0.0
         window.material.uniforms.uMouseCoord.value.x = xNDC;
         window.material.uniforms.uMouseCoord.value.y = yNDC;
-        window.material.uniforms.uMouseCoord.value.z = 0.0; // Optional, based on usage
-        window.material.uniforms.uMouseCoord.value.w = 0.0; // Optional, based on usage
+        window.material.uniforms.uMouseCoord.value.z = 0.0; 
+        window.material.uniforms.uMouseCoord.value.w = 0.0; 
     }
 
     onWindowResize() {
